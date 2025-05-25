@@ -94,7 +94,7 @@ document.addEventListener('click', (e) => {
 
 // 午夜黑化模式
 function checkMidnightMode() {
-    const hour = new Date().getHours();
+    const hour = new Date(new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })).getHours();
     if (hour >= 23 || hour < 5) {
         document.body.style.backgroundColor = '#1a1a1a';
         document.body.style.color = '#ffffff';
@@ -107,4 +107,4 @@ function checkMidnightMode() {
 // 頁面載入時檢查
 checkMidnightMode();
 // 每分鐘檢查一次
-setInterval(checkMidnightMode, 60000); 
+setInterval(checkMidnightMode, 60000);

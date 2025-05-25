@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// 檢查是否通過折扣碼進入
+// 檢查是否通過正確入口進入
 if (!isset($_SESSION['easter_egg']) || $_SESSION['easter_egg'] !== 'EASTER2025') {
     header('Location: index.php');
     exit;
@@ -52,12 +52,28 @@ if (!isset($_SESSION['easter_egg']) || $_SESSION['easter_egg'] !== 'EASTER2025')
             margin: 1rem 0;
             font-size: 1.2rem;
         }
-        .discount-code {
+        .success-message {
             margin-top: 2rem;
             padding: 1rem;
             background: #f9f9f9;
             border-radius: 8px;
             display: none;
+        }
+        .success-message h3 {
+            color: #4CAF50;
+            margin-bottom: 1rem;
+        }
+        .success-message p {
+            margin: 0.5rem 0;
+        }
+        .success-message .discount-code {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1565c0;
+            margin: 1rem 0;
+            padding: 0.5rem;
+            background: #e3f2fd;
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -82,10 +98,14 @@ if (!isset($_SESSION['easter_egg']) || $_SESSION['easter_egg'] !== 'EASTER2025')
         
         <div class="game-board" id="gameBoard"></div>
         
-        <div class="discount-code" id="discountCode">
+        <div class="success-message" id="successMessage">
             <h3>🎉 恭喜你找到所有彩蛋！</h3>
-            <p>你的神秘折扣碼是：<strong>EASTER2025</strong></p>
+            <p>你已經解鎖了神秘折扣碼！</p>
+            <div class="discount-code">EASTER2025</div>
             <p>在結帳時使用此折扣碼可獲得 20% 的折扣！</p>
+            <button onclick="goToShop()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                去購物
+            </button>
         </div>
     </main>
 
@@ -98,6 +118,11 @@ if (!isset($_SESSION['easter_egg']) || $_SESSION['easter_egg'] !== 'EASTER2025')
         const EGG_COUNT = 5;
         let foundEggs = 0;
         let eggPositions = [];
+
+        // 前往購物頁面
+        function goToShop() {
+            window.location.href = 'index.php';
+        }
 
         // 初始化遊戲板
         function initGame() {
@@ -134,7 +159,7 @@ if (!isset($_SESSION['easter_egg']) || $_SESSION['easter_egg'] !== 'EASTER2025')
                 document.getElementById('foundCount').textContent = foundEggs;
                 
                 if (foundEggs === EGG_COUNT) {
-                    document.getElementById('discountCode').style.display = 'block';
+                    document.getElementById('successMessage').style.display = 'block';
                 }
             } else if (!cell.classList.contains('found')) {
                 cell.textContent = '❌';

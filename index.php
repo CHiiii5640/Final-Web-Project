@@ -49,6 +49,11 @@ $products = json_decode(file_get_contents('data/products.json'), true);
 
     <footer>
         <p>&copy; 2024 Glitch Mall - 惡搞商品專賣店</p>
+        <div style="position: fixed; bottom: 10px; right: 10px; opacity: 0.1; transition: opacity 0.3s;" 
+             onmouseover="this.style.opacity='1'" 
+             onmouseout="this.style.opacity='0.1'">
+            <a href="enter_easter.php" style="color: #666; text-decoration: none; font-size: 12px;">🥚</a>
+        </div>
     </footer>
 
     <script src="assets/js/easter.js"></script>

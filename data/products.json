@@ -4,7 +4,7 @@
         "name": "AI \u5632\u8af7\u96e8\u5098",
         "price": 199,
         "image": "umbrella.png",
-        "stock": 1000000,
+        "stock": 999999,
         "description": "\u9019\u628a\u96e8\u5098\u6703\u5728\u4f60\u6dcb\u96e8\u6642\u7528 AI \u8a9e\u97f3\u5632\u8af7\u4f60\uff0c\u8b93\u4f60\u7684\u96e8\u5929\u4e0d\u518d\u7121\u804a\uff01"
     },
     {
@@ -12,7 +12,7 @@
         "name": "\u6df1\u591c glitch \u9b27\u9418",
         "price": 299,
         "image": "clock.png",
-        "stock": 500000,
+        "stock": 499999,
         "description": "\u534a\u591c\u53eb\u9192\u4f60\u6642\u6703\u51fa\u73fe\u5404\u7a2e\u6545\u969c\u6548\u679c\uff0c\u4fdd\u8b49\u8b93\u4f60\u77ac\u9593\u6e05\u9192\uff01"
     },
     {
@@ -20,7 +20,7 @@
         "name": "\u7a0b\u5f0f\u78bc\u62b1\u6795",
         "price": 399,
         "image": "pillow.png",
-        "stock": 7999984,
+        "stock": 7999980,
         "description": "\u5370\u6eff\u7a0b\u5f0f\u78bc\u7684\u62b1\u6795\uff0c\u8b93\u4f60\u5728\u7761\u89ba\u6642\u4e5f\u80fd\u5922\u5230\u5beb\u7a0b\u5f0f\uff01"
     }
 ]
