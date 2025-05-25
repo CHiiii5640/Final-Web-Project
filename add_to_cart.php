@@ -1,19 +1,8 @@
 <?php
 session_start();
 
-// 檢查是否為 POST 請求
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: index.php');
-    exit;
-}
-
 // 獲取商品 ID
 $product_id = isset($_POST['product_id']) ? (int)$_POST['product_id'] : 0;
-
-if ($product_id <= 0) {
-    header('Location: index.php');
-    exit;
-}
 
 // 讀取商品數據
 $products = json_decode(file_get_contents('data/products.json'), true);
@@ -27,7 +16,7 @@ foreach ($products as $p) {
     }
 }
 
-// 檢查商品是否存在且有庫存
+// 如果商品不存在或無庫存，重定向到首頁
 if (!$product || $product['stock'] <= 0) {
     header('Location: index.php');
     exit;

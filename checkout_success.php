@@ -4,19 +4,15 @@ session_start();
 // 獲取訂單 ID
 $order_id = isset($_GET['order_id']) ? (int)$_GET['order_id'] : 0;
 
-if ($order_id <= 0) {
-    header('Location: index.php');
-    exit;
-}
-
 // 讀取訂單數據
 $order_file = 'data/orders/order_' . $order_id . '.json';
-if (!file_exists($order_file)) {
+$order = json_decode(file_get_contents($order_file), true);
+
+// 如果訂單不存在或無效，重定向到首頁
+if (!$order) {
     header('Location: index.php');
     exit;
 }
-
-$order = json_decode(file_get_contents($order_file), true);
 ?>
 
 <!DOCTYPE html>
