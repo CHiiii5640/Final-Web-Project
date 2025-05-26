@@ -1,4 +1,3 @@
-/* 全局樣式 */
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +10,6 @@ body {
     background-color: #f4f4f4;
 }
 
-/* 導航欄 */
 header {
     background-color: #333;
     color: white;
@@ -36,7 +34,6 @@ nav {
     color: #ffd700;
 }
 
-/* 商品網格 */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -56,6 +53,8 @@ nav {
 
 .product-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: transform 1s ease;
 }
 
 .product-card img {
@@ -101,7 +100,6 @@ button:disabled {
     cursor: not-allowed;
 }
 
-/* 頁腳 */
 footer {
     text-align: center;
     padding: 1rem;
