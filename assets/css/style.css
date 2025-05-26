@@ -110,6 +110,14 @@ footer {
     width: 100%;
 }
 
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: white;
+}
+
+body.dark-mode a {
+    color: #ffd700;
+}
 /* 響應式設計 */
 @media (max-width: 768px) {
     .products-grid {
