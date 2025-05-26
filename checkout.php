@@ -1,29 +1,16 @@
 <?php
 session_start();
 
-// 檢查購物車是否為空
 if (empty($_SESSION['cart'])) {
     header('Location: cart.php');
     exit;
 }
 
-// 處理表單提交
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $log_path = __DIR__ . '/log.txt';
-    file_put_contents($log_path, "表單提交開始\n", FILE_APPEND);
-    
     try {
-        $orders_dir = __DIR__ . '/data/orders';
-        if (!file_exists($orders_dir)) {
-            mkdir($orders_dir, 0777, true);
-            file_put_contents($log_path, "創建 orders 目錄\n", FILE_APPEND);
-        }
-        
-        // 讀取商品數據
-        $products_file = __DIR__ . '/data/products.json';
+        $orders_dir = 'data/orders';
+        $products_file = 'data/products.json';
         $products = json_decode(file_get_contents($products_file), true);
-        
-        file_put_contents($log_path, "成功讀取商品數據\n", FILE_APPEND);
         
         // 檢查庫存
         $stock_ok = true;
@@ -43,91 +30,86 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo '部分商品庫存不足，請調整購物車數量。';
             echo '</div>';
         } else {
-            file_put_contents($log_path, "庫存檢查通過\n", FILE_APPEND);
-            
-            // 計算總金額
-            $total = array_reduce($_SESSION['cart'], function($sum, $item) {
-                return $sum + ($item['price'] * $item['quantity']);
-            }, 0);
+            $total = 0;
+            foreach ($_SESSION['cart'] as $cart_item) {
+                $total += $cart_item['price'] * $cart_item['quantity'];
+            }
 
             // 檢查折扣碼
             $discount = 0;
+            $discount_error = false;
             if (!empty($_POST['discount_code'])) {
                 if ($_POST['discount_code'] === 'EASTER2025') {
-                    $discount = $total * 0.2; // 20% 折扣
+                    $discount = round($total * 0.2);
                     $total -= $discount;
                 } else {
+                    $discount_error = true;
                     echo '<div style="color: #f44336; padding: 10px; margin: 10px 0; background: #ffebee; border-radius: 4px;">';
-                    echo '無效的折扣碼，將以原價計算';
+                    echo '無效的折扣碼，請重新輸入';
                     echo '</div>';
                 }
             }
             
-            // 扣除庫存
-            foreach ($_SESSION['cart'] as $cart_item) {
-                foreach ($products as &$product) {
-                    if ($product['id'] === $cart_item['id']) {
-                        $product['stock'] -= $cart_item['quantity'];
+            if (!$discount_error) {
+                foreach ($_SESSION['cart'] as $cart_item) {
+                    foreach ($products as &$product) {
+                        if ($product['id'] === $cart_item['id']) {
+                            $product['stock'] -= $cart_item['quantity'];
+                        }
                     }
                 }
-            }
-            
-            // 保存更新後的商品數據
-            file_put_contents($products_file, json_encode($products, JSON_PRETTY_PRINT), LOCK_EX);
-            
-            // 創建訂單
-            $order = [
-                'id' => time(),
-                'items' => $_SESSION['cart'],
-                'total' => $total,
-                'discount' => $discount,
-                'customer_info' => [
+                
+                // 保存更新後的商品數據
+                file_put_contents($products_file, json_encode($products, JSON_PRETTY_PRINT), LOCK_EX);
+                
+                // 創建訂單
+                $order = [
+                    'id' => time(),
+                    'items' => $_SESSION['cart'],
+                    'total' => $total,
+                    'discount' => $discount,
+                    'customer_info' => [
+                        'name' => $_POST['name'],
+                        'email' => $_POST['email'],
+                        'address' => $_POST['address']
+                    ],
+                    'timestamp' => date('Y-m-d H:i:s')
+                ];
+                
+                // 保存訂單
+                $order_file = $orders_dir . '/order_' . $order['id'] . '.json';
+                file_put_contents($order_file, json_encode($order, JSON_PRETTY_PRINT), LOCK_EX);
+
+                // 生成訂購者個人訊息檔案
+                $customer_info = [
+                    'order_id' => $order['id'],
                     'name' => $_POST['name'],
                     'email' => $_POST['email'],
-                    'address' => $_POST['address']
-                ],
-                'timestamp' => date('Y-m-d H:i:s')
-            ];
-            
-            // 保存訂單
-            $order_file = $orders_dir . '/order_' . $order['id'] . '.json';
-            file_put_contents($order_file, json_encode($order, JSON_PRETTY_PRINT), LOCK_EX);
-            file_put_contents($log_path, "訂單儲存完成：{$order_file}\n", FILE_APPEND);
+                    'address' => $_POST['address'],
+                    'order_time' => date('Y-m-d H:i:s'),
+                    'total_amount' => $total,
+                    'discount' => $discount,
+                    'items' => array_map(function($item) {
+                        return [
+                            'name' => $item['name'],
+                            'quantity' => $item['quantity'],
+                            'price' => $item['price']
+                        ];
+                    }, $_SESSION['cart'])
+                ];
 
-            // 生成訂購者個人訊息檔案
-            $customer_info = [
-                'order_id' => $order['id'],
-                'name' => $_POST['name'],
-                'email' => $_POST['email'],
-                'address' => $_POST['address'],
-                'order_time' => date('Y-m-d H:i:s'),
-                'total_amount' => $total,
-                'discount' => $discount,
-                'items' => array_map(function($item) {
-                    return [
-                        'name' => $item['name'],
-                        'quantity' => $item['quantity'],
-                        'price' => $item['price']
-                    ];
-                }, $_SESSION['cart'])
-            ];
-
-            // 保存訂購者個人訊息
-            $customer_file = $orders_dir . '/customer_' . $order['id'] . '.json';
-            file_put_contents($customer_file, json_encode($customer_info, JSON_PRETTY_PRINT), LOCK_EX);
-            file_put_contents($log_path, "訂購者訊息儲存完成：{$customer_file}\n", FILE_APPEND);
-            
-            // 清空購物車
-            $_SESSION['cart'] = [];
-            
-            // 重定向到成功頁面
-            $redirect_url = 'checkout_success.php?order_id=' . $order['id'];
-            file_put_contents($log_path, "準備重定向到：{$redirect_url}\n", FILE_APPEND);
-            header('Location: ' . $redirect_url);
-            exit;
+                // 保存訂購者個人訊息
+                $customer_file = $orders_dir . '/customer_' . $order['id'] . '.json';
+                file_put_contents($customer_file, json_encode($customer_info, JSON_PRETTY_PRINT), LOCK_EX);
+                
+                $_SESSION['cart'] = [];
+                
+                $redirect_url = 'checkout_success.php?order_id=' . $order['id'];
+                header('Location: ' . $redirect_url);
+                exit;
+            }
         }
     } catch (Exception $e) {
-        file_put_contents($log_path, "錯誤：" . $e->getMessage() . "\n", FILE_APPEND);
         echo '<div style="color: red; padding: 20px; text-align: center;">';
         echo '處理訂單時發生錯誤，請稍後再試。';
         echo '</div>';
@@ -135,9 +117,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // 計算總金額
-$total = array_reduce($_SESSION['cart'], function($sum, $item) {
-    return $sum + ($item['price'] * $item['quantity']);
-}, 0);
+$total = 0;
+foreach ($_SESSION['cart'] as $cart_item) {
+    $total += $cart_item['price'] * $cart_item['quantity'];
+}
 
 // AI 店員建議
 $ai_suggestions = [
@@ -195,6 +178,7 @@ $ai_suggestion = $ai_suggestions[array_rand($ai_suggestions)];
             padding: 1rem;
             background: #f9f9f9;
             border-radius: 4px;
+            color: #111;
         }
         .cart-item {
             display: flex;
@@ -224,6 +208,7 @@ $ai_suggestion = $ai_suggestions[array_rand($ai_suggestions)];
             padding: 1rem;
             background: #f5f5f5;
             border-radius: 4px;
+            color: #111;
         }
     </style>
 </head>
