@@ -92,19 +92,15 @@ document.addEventListener('click', (e) => {
     animate();
 });
 
-// 午夜黑化模式
-function checkMidnightMode() {
-    const hour = new Date(new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })).getHours();
-    if (hour >= 23 || hour < 5) {
-        document.body.style.backgroundColor = '#1a1a1a';
-        document.body.style.color = '#ffffff';
-        document.querySelectorAll('a').forEach(a => {
-            a.style.color = '#ffd700';
-        });
+function DarkMode() {
+    const now = new Date();
+    const hour = now.getHours(); 
+    if (hour >= 18 || hour < 5) {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
     }
 }
 
-// 頁面載入時檢查
-checkMidnightMode();
-// 每分鐘檢查一次
-setInterval(checkMidnightMode, 60000);
+DarkMode();
+setInterval(DarkMode, 60000);
