@@ -14,6 +14,7 @@ $products = json_decode(file_get_contents('data/products.json'), true);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glitch Mall - 惡搞商品專賣店</title>
+    <link rel="icon" href="assets/favicon/favicon-index.ico">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
