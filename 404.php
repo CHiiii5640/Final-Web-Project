@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - 找不到頁面</title>
+    <link rel="icon" href="assets/favicon/favicon-index.ico">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
         .error-container {
