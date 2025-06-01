@@ -17,29 +17,34 @@ $products = json_decode(file_get_contents('data/products.json'), true);
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
       body {
-          background-color: #1f1b24;
-          color: #f5f5f5;
+          background-color: #0e0e0e;
+          color: #00ffe0;
           font-family: 'Segoe UI', sans-serif;
       }
 
       header nav {
-          background-color: #1a1f2b;
-          color: #fff;
+          background-color: #111;
+          color: #00ffe0;
           padding: 1rem;
           display: flex;
           justify-content: space-between;
           align-items: center;
+          box-shadow: 0 4px 12px rgba(0, 255, 224, 0.2);
       }
 
       header nav h1 {
-          color: #ff4081;
+          color: #00ffe0;
+          text-shadow: 0 0 10px #00ffe0;
       }
 
       .nav-links a {
-          color: #ffeb3b;
+          color: #00ffe0;
           margin-left: 1rem;
           text-decoration: none;
           font-weight: bold;
+      }
+      .nav-links a:hover {
+          color: #76fff7;
       }
 
       .products-grid {
@@ -51,40 +56,43 @@ $products = json_decode(file_get_contents('data/products.json'), true);
       }
 
       .product-card {
-          background-color: #ffffff;
-          color: #111;
+          background-color: #1a1a1a;
+          color: #00ffe0;
           padding: 1rem;
           border-radius: 8px;
-          box-shadow: 0 0 12px rgba(255, 64, 129, 0.3);
+          box-shadow: 0 0 12px rgba(0, 255, 224, 0.2);
+          border: 1px solid #00ffe0;
           width: 260px;
           text-align: center;
           transition: transform 0.2s;
       }
 
-      .product-card:hover {
-          transform: scale(1.08);
-          box-shadow:
-              0 0 8px rgba(255, 0, 102, 0.8),
-              0 0 16px rgba(255, 0, 102, 0.6),
-              0 0 24px rgba(255, 0, 102, 0.4);
-      }
-
+    .product-card:hover {
+        transform: scale(1.08);
+        box-shadow:
+            0 0 12px #ff1744,
+            0 0 24px #ff5252,
+            0 0 32px #ff8a80;
+    }
+    .product-card h3 {
+        color:rgb(12, 228, 95);
+    }
       .price {
-          color: #e91e63;
+          color: #ff4081;
           font-weight: bold;
       }
 
       .description {
           font-size: 0.9rem;
-          color: #333;
+          color: #b0bec5;
           margin: 0.5rem 0;
       }
 
       button[type="submit"] {
-          background-color: #00e676;
+          background-color: #00bcd4;
           border: none;
           padding: 0.5rem 1rem;
-          color: #000;
+          color: #fff;
           font-weight: bold;
           border-radius: 4px;
           cursor: pointer;
@@ -92,7 +100,7 @@ $products = json_decode(file_get_contents('data/products.json'), true);
       }
 
       button[type="submit"]:hover {
-          background-color: #69f0ae;
+          background-color:rgba(28, 242, 242, 0.92);
       }
 
       button[disabled] {
@@ -102,11 +110,12 @@ $products = json_decode(file_get_contents('data/products.json'), true);
       }
 
       footer {
-          background-color: #1a1f2b;
-          color: #fff;
+          background-color: #111;
+          color: #00ffe0;
           padding: 1rem;
           text-align: center;
           margin-top: 2rem;
+          box-shadow: 0 -2px 12px rgba(0, 255, 224, 0.1);
       }
 
       @keyframes spin {
@@ -173,8 +182,3 @@ $products = json_decode(file_get_contents('data/products.json'), true);
     <script src="assets/js/easter.js"></script>
 </body>
 </html> 
-      .light-mode header nav,
-      .light-mode footer {
-          background-color: #e3e7ed;
-          color: #000;
-      }
