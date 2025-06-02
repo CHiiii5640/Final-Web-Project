@@ -3,7 +3,6 @@ session_start();
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
-
 // 讀取商品數據
 $products = json_decode(file_get_contents('data/products.json'), true);
 ?>
