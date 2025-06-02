@@ -103,9 +103,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 file_put_contents($customer_file, json_encode($customer_info, JSON_PRETTY_PRINT), LOCK_EX);
                 
                 $_SESSION['cart'] = [];
-                
-                $redirect_url = 'checkout_success.php?order_id=' . $order['id'];
+               /* 
+                // 隨機決定是否導向驚喜頁面
+                if (rand(1, 100) <= 30) { // 30% 的機率導向驚喜頁面
+                    $redirect_url = 'surprise.php';
+                } else {
+                    $redirect_url = 'checkout_success.php?order_id=' . $order['id'];
+                }
                 header('Location: ' . $redirect_url);
+                exit;
+                
+                header('Location: checkout_success.php?order_id=' . $order['id']);
+                exit;
+                */
+                header('Location: checkout_success.php?order_id=' . $order['id']);
                 exit;
             }
         }
@@ -227,7 +238,7 @@ $ai_suggestion = $ai_suggestions[array_rand($ai_suggestions)];
         <h2>結帳</h2>
         
         <div class="ai-suggestion">
-            🤖 AI 店員建議：<?php echo htmlspecialchars($ai_suggestion); ?>
+            🤖 AI 店員建議：<?php echo ($ai_suggestion); ?>
         </div>
         
         <form class="checkout-form" method="POST">
@@ -258,13 +269,13 @@ $ai_suggestion = $ai_suggestions[array_rand($ai_suggestions)];
                 <h3>訂單摘要</h3>
                 <?php foreach ($_SESSION['cart'] as $item): ?>
                     <div class="cart-item">
-                        <span><?php echo htmlspecialchars($item['name']); ?></span>
-                        <span>x<?php echo htmlspecialchars($item['quantity']); ?></span>
-                        <span>NT$ <?php echo htmlspecialchars($item['price'] * $item['quantity']); ?></span>
+                        <span><?php echo ($item['name']); ?></span>
+                        <span>x<?php echo ($item['quantity']); ?></span>
+                        <span>NT$ <?php echo ($item['price'] * $item['quantity']); ?></span>
                     </div>
                 <?php endforeach; ?>
                 <div class="cart-total">
-                    總計: NT$ <?php echo htmlspecialchars($total); ?>
+                    總計: NT$ <?php echo ($total); ?>
                 </div>
             </div>
             

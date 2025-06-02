@@ -98,27 +98,27 @@ if (!$order) {
         <div class="success-message">
             <h2>🎉 訂單成功！</h2>
             <p>感謝您的購買！您的訂單已經成功建立。</p>
-            <p>訂單編號：<?php echo htmlspecialchars($order_id); ?></p>
+            <p>訂單編號：<?php echo ($order_id); ?></p>
         </div>
 
         <div class="order-details">
             <h3>訂單詳情</h3>
-            <p>訂購時間：<?php echo htmlspecialchars($order['timestamp']); ?></p>
-            <p>收件人：<?php echo htmlspecialchars($order['customer_info']['name']); ?></p>
-            <p>電子郵件：<?php echo htmlspecialchars($order['customer_info']['email']); ?></p>
-            <p>收件地址：<?php echo htmlspecialchars($order['customer_info']['address']); ?></p>
+            <p>訂購時間：<?php echo ($order['timestamp']); ?></p>
+            <p>收件人：<?php echo ($order['customer_info']['name']); ?></p>
+            <p>電子郵件：<?php echo ($order['customer_info']['email']); ?></p>
+            <p>收件地址：<?php echo ($order['customer_info']['address']); ?></p>
             
             <h4>訂購商品</h4>
             <?php foreach ($order['items'] as $item): ?>
                 <div class="cart-item">
-                    <span><?php echo htmlspecialchars($item['name']); ?></span>
-                    <span>x<?php echo htmlspecialchars($item['quantity']); ?></span>
-                    <span>NT$ <?php echo htmlspecialchars($item['price'] * $item['quantity']); ?></span>
+                    <span><?php echo ($item['name']); ?></span>
+                    <span>x<?php echo ($item['quantity']); ?></span>
+                    <span>NT$ <?php echo ($item['price'] * $item['quantity']); ?></span>
                 </div>
             <?php endforeach; ?>
             
             <div class="cart-total">
-                總計: NT$ <?php echo htmlspecialchars($order['total']); ?>
+                總計: NT$ <?php echo ($order['total']); ?>
             </div>
         </div>
 

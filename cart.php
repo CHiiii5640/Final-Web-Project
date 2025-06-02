@@ -91,18 +91,18 @@ foreach ($_SESSION['cart'] as $item) {
             <?php foreach ($_SESSION['cart'] as $item): ?>
                 <div class="cart-item">
                     <div class="item-info">
-                        <h3><?php echo htmlspecialchars($item['name']); ?></h3>
-                        <p>單價: NT$ <?php echo htmlspecialchars($item['price']); ?></p>
-                        <p>數量: <?php echo htmlspecialchars($item['quantity']); ?></p>
+                        <h3><?php echo ($item['name']); ?></h3>
+                        <p>單價: NT$ <?php echo ($item['price']); ?></p>
+                        <p>數量: <?php echo ($item['quantity']); ?></p>
                     </div>
                     <div class="item-total">
-                        NT$ <?php echo htmlspecialchars($item['price'] * $item['quantity']); ?>
+                        NT$ <?php echo ($item['price'] * $item['quantity']); ?>
                     </div>
                 </div>
             <?php endforeach; ?>
 
             <div class="cart-total">
-                總計: NT$ <?php echo htmlspecialchars($total); ?>
+                總計: NT$ <?php echo ($total); ?>
             </div>
 
             <a href="checkout.php" class="checkout-btn">前往結帳</a>
