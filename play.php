@@ -1,11 +1,5 @@
 <?php
 session_start();
-
-// 檢查是否通過正確入口進入
-if (!isset($_SESSION['easter_egg']) || $_SESSION['easter_egg'] !== 'EASTER2025') {
-    header('Location: index.php');
-    exit;
-}
 ?>
 
 <!DOCTYPE html>
