@@ -1,26 +1,58 @@
 [
     {
         "id": 1,
-        "name": "AI \u5632\u8af7\u96e8\u5098",
+        "name": "嘲諷傘（期末限定版）",
         "price": 199,
         "image": "umbrella.png",
-        "stock": 999999,
-        "description": "\u9019\u628a\u96e8\u5098\u6703\u5728\u4f60\u6dcb\u96e8\u6642\u7528 AI \u8a9e\u97f3\u5632\u8af7\u4f60\uff0c\u8b93\u4f60\u7684\u96e8\u5929\u4e0d\u518d\u7121\u804a\uff01"
+        "stock": 999994,
+        "description": "這把傘會在你考爛時用嘲諷語音陪你一起撐過風雨：「你這題也寫不出來？」"
     },
     {
         "id": 2,
-        "name": "\u6df1\u591c glitch \u9b27\u9418",
+        "name": "崩潰鬧鐘",
         "price": 299,
         "image": "clock.png",
-        "stock": 499999,
-        "description": "\u534a\u591c\u53eb\u9192\u4f60\u6642\u6703\u51fa\u73fe\u5404\u7a2e\u6545\u969c\u6548\u679c\uff0c\u4fdd\u8b49\u8b93\u4f60\u77ac\u9593\u6e05\u9192\uff01"
+        "stock": 499996,
+        "description": "每當上課鐘聲響起，會模仿教授說「同學們，起立！ 那邊的同學不要偷懶，起來動一動」。"
     },
     {
         "id": 3,
-        "name": "\u7a0b\u5f0f\u78bc\u62b1\u6795",
+        "name": "安撫抱枕",
         "price": 399,
         "image": "pillow.png",
-        "stock": 7999980,
-        "description": "\u5370\u6eff\u7a0b\u5f0f\u78bc\u7684\u62b1\u6795\uff0c\u8b93\u4f60\u5728\u7761\u89ba\u6642\u4e5f\u80fd\u5922\u5230\u5beb\u7a0b\u5f0f\uff01"
+        "stock": 7999973,
+        "description": "程式出錯時最好的療癒夥伴，抱住它，錯誤訊息會暫時變得沒那麼可怕。"
+    },
+    {
+        "id": 4,
+        "name": "期中崩潰按鈕",
+        "price": 149,
+        "image": "giveup_button.png",
+        "stock": 888888,
+        "description": "按下去沒事，只會播放「你可以的...吧？」語音，送給考前焦慮的同學最適合不過。"
+    },
+    {
+        "id": 5,
+        "name": "空堂補水神器",
+        "price": 299,
+        "image": "void_water.png",
+        "stock": 333333,
+        "description": "一瓶裡面什麼都沒有的水（連水都沒有），最適合放在上課桌上當擺設。"
+    },
+    {
+        "id": 6,
+        "name": "戀愛模擬體驗卡",
+        "price": 88,
+        "image": "love_card.png",
+        "stock": 100000,
+        "description": "掃描 QR code 就能收到一則虛擬戀人訊息，彌補你沒選到通識愛情學分的遺憾。"
+    },
+    {
+        "id": 7,
+        "name": "機器學習導論考卷",
+        "price": 1,
+        "image": "ml_exam.png",
+        "stock": 2024,
+        "description": "附有祝福與精神支援，讓你在選擇題全選 C 的同時也有勇氣說：『人生就是一場機率遊戲。』"
     }
 ]
