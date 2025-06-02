@@ -63,33 +63,6 @@ document.addEventListener('click', (e) => {
     emoji.style.zIndex = '9999';
     document.body.appendChild(emoji);
 
-    // 動畫效果
-    const angle = Math.random() * Math.PI * 2;
-    const velocity = 5 + Math.random() * 5;
-    const vx = Math.cos(angle) * velocity;
-    const vy = Math.sin(angle) * velocity;
-    let x = e.clientX;
-    let y = e.clientY;
-    let opacity = 1;
-
-    function animate() {
-        x += vx;
-        y += vy;
-        vy += 0.2; // 重力
-        opacity -= 0.02;
-
-        emoji.style.left = x + 'px';
-        emoji.style.top = y + 'px';
-        emoji.style.opacity = opacity;
-
-        if (opacity > 0) {
-            requestAnimationFrame(animate);
-        } else {
-            emoji.remove();
-        }
-    }
-
-    animate();
 });
 
 function DarkMode() {
