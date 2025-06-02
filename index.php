@@ -23,7 +23,7 @@ $products = json_decode(file_get_contents('data/products.json'), true);
       }
 
       header nav {
-          background-color: #2a223a;
+          background-color: #1a1f2b;
           color: #fff;
           padding: 1rem;
           display: flex;
@@ -62,7 +62,11 @@ $products = json_decode(file_get_contents('data/products.json'), true);
       }
 
       .product-card:hover {
-          transform: scale(1.05);
+          transform: scale(1.08);
+          box-shadow:
+              0 0 8px rgba(255, 0, 102, 0.8),
+              0 0 16px rgba(255, 0, 102, 0.6),
+              0 0 24px rgba(255, 0, 102, 0.4);
       }
 
       .price {
@@ -98,11 +102,20 @@ $products = json_decode(file_get_contents('data/products.json'), true);
       }
 
       footer {
-          background-color: #2a223a;
+          background-color: #1a1f2b;
           color: #fff;
           padding: 1rem;
           text-align: center;
           margin-top: 2rem;
+      }
+
+      @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+      }
+      .egg-spin {
+          display: inline-block;
+          animation: spin 0.3s linear infinite;
       }
     </style>
 </head>
@@ -153,10 +166,15 @@ $products = json_decode(file_get_contents('data/products.json'), true);
         <div style="position: fixed; bottom: 10px; right: 10px; opacity: 0.1; transition: opacity 0.3s;" 
              onmouseover="this.style.opacity='1'" 
              onmouseout="this.style.opacity='0.1'">
-            <a href="enter_easter.php" style="color: #666; text-decoration: none; font-size: 12px;">🥚</a>
+            <a href="enter_easter.php" class="egg-spin" style="color: #666; text-decoration: none; font-size: 22px;">🥚</a>
         </div>
     </footer>
 
     <script src="assets/js/easter.js"></script>
 </body>
 </html> 
+      .light-mode header nav,
+      .light-mode footer {
+          background-color: #e3e7ed;
+          color: #000;
+      }
