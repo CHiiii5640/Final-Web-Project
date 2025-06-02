@@ -4,7 +4,7 @@
         "name": "嘲諷傘（期末限定版）",
         "price": 199,
         "image": "umbrella.png",
-        "stock": 999994,
+        "stock": 38,
         "description": "這把傘會在你考爛時用嘲諷語音陪你一起撐過風雨：「你這題也寫不出來？」"
     },
     {
@@ -12,7 +12,7 @@
         "name": "崩潰鬧鐘",
         "price": 299,
         "image": "clock.png",
-        "stock": 499996,
+        "stock": 68,
         "description": "每當上課鐘聲響起，會模仿教授說「同學們，起立！ 那邊的同學不要偷懶，起來動一動」。"
     },
     {
@@ -20,31 +20,31 @@
         "name": "安撫抱枕",
         "price": 399,
         "image": "pillow.png",
-        "stock": 7999973,
+        "stock": 98,
         "description": "程式出錯時最好的療癒夥伴，抱住它，錯誤訊息會暫時變得沒那麼可怕。"
     },
     {
         "id": 4,
-        "name": "期中崩潰按鈕",
-        "price": 149,
-        "image": "giveup_button.png",
-        "stock": 888888,
-        "description": "按下去沒事，只會播放「你可以的...吧？」語音，送給考前焦慮的同學最適合不過。"
+        "name": "教授語錄徽章組",
+        "price": 120,
+        "image": "badge_quotes.png",
+        "stock": 88,
+        "description": "收錄『這有什麼創新點？』、『這不是大家都做過了嗎？』、『你覺得這樣能通過嗎？』等專題簡報最常聽見的教授語錄。"
     },
     {
         "id": 5,
-        "name": "空堂補水神器",
-        "price": 299,
-        "image": "void_water.png",
-        "stock": 333333,
-        "description": "一瓶裡面什麼都沒有的水（連水都沒有），最適合放在上課桌上當擺設。"
+        "name": "時間停止器",
+        "price": 999,
+        "image": "time_freezer.png",
+        "stock": 3,
+        "description": "靈感來自各種動漫與幻想作品，傳說只要啟動它，就能暫停世界讓你安心補眠、作弊或逃避現實（停止效果需自行想像）。"
     },
     {
         "id": 6,
         "name": "戀愛模擬體驗卡",
         "price": 88,
         "image": "love_card.png",
-        "stock": 100000,
+        "stock": 245,
         "description": "掃描 QR code 就能收到一則虛擬戀人訊息，彌補你沒選到通識愛情學分的遺憾。"
     },
     {
@@ -52,7 +52,7 @@
         "name": "機器學習導論考卷",
         "price": 1,
         "image": "ml_exam.png",
-        "stock": 2024,
+        "stock": 1,
         "description": "附有祝福與精神支援，讓你在選擇題全選 C 的同時也有勇氣說：『人生就是一場機率遊戲。』"
     }
 ]
