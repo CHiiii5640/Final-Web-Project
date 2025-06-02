@@ -118,10 +118,3 @@ body.dark-mode {
 body.dark-mode a {
     color: #ffd700;
 }
-/* 響應式設計 */
-@media (max-width: 768px) {
-    .products-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        padding: 1rem;
-    }
-} 
