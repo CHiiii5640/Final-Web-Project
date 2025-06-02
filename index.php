@@ -132,6 +132,8 @@ $products = json_decode(file_get_contents('data/products.json'), true);
 
                 <p class="description"><?php echo ($product['description']); ?></p>
 
+                <p class="description">剩餘數量：<?php echo ($product['stock']); ?></p>
+
                 <form action="add_to_cart.php" method="POST">
                     <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
 
