@@ -171,7 +171,7 @@ $products = json_decode(file_get_contents('data/products.json'), true);
     </main>
 
     <footer>
-        <p>&copy; 2024 Glitch Mall - 惡搞商品專賣店</p>
+        <p>&copy; 2025 Glitch Mall - 惡搞商品專賣店</p>
         <div style="position: fixed; bottom: 10px; right: 10px; opacity: 0.1; transition: opacity 0.3s;" 
              onmouseover="this.style.opacity='1'" 
              onmouseout="this.style.opacity='0.1'">
