@@ -1,23 +1,23 @@
-# Glitch-Mall
+# Glitch Mall 網站專案
 
-> 基本電商功能的 HTML + PHP 網站專案，含有簡易幽默特效 —— 期末展示。
-> 有什麼想法再說，慢慢優化
+一個無需資料庫的幽默風格購物網站，使用 HTML + PHP 打造，具備基礎電商功能與互動式彩蛋，為期末專案展示而設計。
+
 ---
 
 ## 專案目標
 
-不依賴 MySQL 的購物網站，使用 Session 替代資料庫，結合互動式彩蛋設計與可擴充的結帳系統。
+建立一個不依賴 MySQL 的電商網站，利用 PHP 的 `Session` 管理使用者狀態，並將商品與訂單資料以 JSON 檔案儲存。網站加入彩蛋特效與可擴充的結帳機制，融合娛樂與實用性。
 
 ---
 
-## 技術架構
+## 使用技術
 
-- **前端**：HTML5, CSS3, JavaScript 
-- **後端**：PHP，資料以 JSON 檔案儲存
-- **資料持久化**：
-  - 商品資料存在 `/data/products.json`
-  - 訂單資料儲存在 `/data/orders/`
-- **使用者狀態**：用 `$_SESSION` 管理購物車、訪客標記等
+- **前端**：HTML5, CSS3, JavaScript
+- **後端**：PHP
+- **資料儲存**：
+  - 商品：`/data/products.json`
+  - 訂單：每筆儲存在 `/data/orders/` 中
+- **狀態管理**：使用 `$_SESSION` 儲存購物車與使用者識別
 
 ---
 
@@ -25,23 +25,23 @@
 
 ```
 glitch-mall/
-├── index.php                # 首頁展示商品
-├── cart.php                 # 購物車
-├── checkout.php             # 結帳流程
-├── play.php                 # 小遊戲彩蛋頁
-├── easter.js                # Konami Code 彩蛋 JS
+├── index.php            # 首頁：商品展示
+├── cart.php             # 購物車頁面
+├── checkout.php         # 處理結帳流程
+├── play.php             # 彩蛋小遊戲頁面
+├── easter.js            # Konami Code 觸發的特效腳本
 ├── data/
-│   ├── products.json        # 所有商品資料
-│   └── orders/              # 每筆訂單一個 JSON 檔
+│   ├── products.json    # 商品資料清單
+│   └── orders/          # 儲存每筆訂單（JSON 檔）
 ├── assets/
-│   ├── css/
-│   ├── js/
-│   └── img/
+│   ├── css/             # 樣式檔案
+│   ├── js/              # JavaScript 程式碼
+│   └── img/             # 圖片資源
 ```
 
 ---
 
-## 商品 JSON 格式
+## 商品資料格式（JSON 範例）
 
 ```json
 [
@@ -62,34 +62,34 @@ glitch-mall/
 ]
 ```
 
-PHP 透過 `file_get_contents('data/products.json')` 讀取並解碼，實作商品顯示與庫存扣除。
+PHP 使用 `file_get_contents()` 讀取 JSON，再透過 `json_decode()` 解碼，實現商品載入與庫存管理。
 
 ---
 
-## 彩蛋互動
+## 彩蛋功能一覽
 
-| 觸發方式 | 效果 |
-|----------|------|
-| Konami Code `↑↑↓↓←→←→BA` | 啟動「塗鴉模式」 |
-| 點擊頁面 | Emoji 飛舞爆炸 |
-| 特定折扣碼 `EASTER2025` | 彈出尋蛋小遊戲 |
-| 404 頁 | Snake 小遊戲 |
-| 系統時間 23:00–05:00 | 啟動「午夜黑化模式」 |
-| 結帳時 | AI 店員亂入給奇怪建議 |
-
----
-
-## 結帳流程
-
-1. 使用者點選商品 → `add_to_cart.php` 更新 Session。
-2. 前往 `cart.php` 檢視與修改購物車。
-3. 點選「結帳」，送出表單至 `checkout.php`。
-4. `checkout.php`：
-    - 檢查庫存是否足夠
-    - 扣除庫存
-    - 建立唯一 ID 的 `order_{timestamp}.json`
-    - 回傳成功訊息（模擬寄信）
+| 觸發方式                          | 效果描述               |
+|-----------------------------------|------------------------|
+| `↑↑↓↓←→←→BA`（Konami Code）       | 啟動「塗鴉模式」         |
+| 點擊任意頁面                      | Emoji 飛舞爆炸動畫      |
+| 折扣碼輸入 `EASTER2025`           | 彈出尋蛋互動小遊戲       |
+| 404 錯誤頁                        | 啟動 Snake 小遊戲       |
+| 系統時間為 23:00–05:00           | 進入「午夜黑化模式」     |
+| 結帳時觸發                        | AI 店員亂入亂給建議      |
 
 ---
 
-> ㄚ這專案我會慢慢改
+## 結帳流程概述
+
+1. 使用者點選商品加入購物車（`add_to_cart.php`）。
+2. 在 `cart.php` 瀏覽與修改購物清單。
+3. 提交表單至 `checkout.php`。
+4. 系統執行以下邏輯：
+   - 檢查商品庫存
+   - 扣除數量
+   - 建立 `order_{timestamp}.json`
+   - 顯示完成頁面（模擬通知寄送）
+
+---
+
+> 未來加入查詢（已具備json)
