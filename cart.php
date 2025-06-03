@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+if (isset($_POST['clear_cart'])) {
+    $_SESSION['cart'] = [];
+    header("Location: cart.php");
+    exit;
+}
+
 // 初始化購物車
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
@@ -108,6 +114,10 @@ foreach ($_SESSION['cart'] as $item) {
 
             <a href="checkout.php" class="checkout-btn">前往結帳</a>
         <?php endif; ?>
+
+        <form method="post" action="cart.php">
+            <button type="submit" name="clear_cart" class="checkout-btn" style="background: #f44336;">清空購物車</button>
+        </form>
     </main>
 
     <footer>
