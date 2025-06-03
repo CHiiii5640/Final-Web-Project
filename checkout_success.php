@@ -8,7 +8,6 @@ $order_id = isset($_GET['order_id']) ? (int)$_GET['order_id'] : 0;
 $order_file = 'data/orders/order_' . $order_id . '.json';
 $order = json_decode(file_get_contents($order_file), true);
 
-// 如果訂單不存在或無效，重定向到首頁
 if (!$order) {
     header('Location: index.php');
     exit;

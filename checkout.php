@@ -35,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $total += $cart_item['price'] * $cart_item['quantity'];
             }
 
-            // 檢查折扣碼
             $discount = 0;
             $discount_error = false;
             if (!empty($_POST['discount_code'])) {
@@ -104,7 +103,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 $_SESSION['cart'] = [];
                /* 
-                // 隨機決定是否導向驚喜頁面
                 if (rand(1, 100) <= 30) { // 30% 的機率導向驚喜頁面
                     $redirect_url = 'surprise.php';
                 } else {

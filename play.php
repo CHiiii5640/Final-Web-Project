@@ -109,7 +109,7 @@ session_start();
     </footer>
 
     <script>
-        const BOARD_SIZE = 25; // 5x5 網格
+        const BOARD_SIZE = 25; 
         const EGG_COUNT = 5;
         let foundEggs = 0;
         let eggPositions = [];
