@@ -127,7 +127,7 @@ if (!$order) {
     </main>
 
     <footer>
-        <p>&copy; 2024 Glitch Mall - 惡搞商品專賣店</p>
+        <p>&copy; 2025 Glitch Mall - 惡搞商品專賣店</p>
     </footer>
 
     <script src="assets/js/easter.js"></script>
