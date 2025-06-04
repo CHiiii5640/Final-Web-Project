@@ -89,7 +89,7 @@ if (!$order) {
             <h1>Glitch Mall</h1>
             <div class="nav-links">
                 <a href="index.php">首頁</a>
-                <a href="cart.php">購物車 (0)</a>
+                <a href="cart.php">購物車 (<?php echo count($_SESSION['cart'] ?? []); ?>)</a>
             </div>
         </nav>
     </header>
